@@ -2,17 +2,42 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
     <title>Directory listing for {{ current_path }}</title>
 </head>
 
 <body>
-    Directory listing for {{ current_path }}
-    <hr/><ul/>
+    <script src="/static/layui/layui.all.js"></script>
+    <div class="layui-fluid">
+        <div class="layui-row layui-bg-blue">
+            <div class="layui-col-md4">
+                <h1>Directory:    {{ current_path }}</h1>
+            </div>
+        </div>
+        <hr class="layui-bg-green">
+        <div class="layui-row">
+            <a href="../">
+                <div class="layui-col-md4">
+                    ../
+                </div>
+            </a>
+        </div>
+        <hr>
 
-    {% for file in files %}
-    <li><a href="{{ file }}/" style="font-size:20px">{{ file }}</a>
-    {% endfor %}
+        {% for file in files %}
+        <div class="layui-row">
+            <a href="{{ file }}/">
+                <div class="layui-col-md4">
+                    {{ file }}
+                </div>
+            </a>
+        </div>
+        <hr>
+        {% endfor %}
+
+    </div>
 </body>
 
 </html>
