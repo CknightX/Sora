@@ -2,7 +2,6 @@ from flask import Flask,render_template,send_file,current_app
 from . import main,utils
 
 
-
 @main.route('/<path:path>')
 def index(path):
     config=current_app.config

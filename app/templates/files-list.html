@@ -13,7 +13,7 @@
     <div class="layui-fluid">
         <div class="layui-row layui-bg-blue">
             <div class="layui-col-md4">
-                <h1>Directory:    {{ current_path }}</h1>
+                <h1>Directory: {{ current_path }}</h1>
             </div>
         </div>
         <hr class="layui-bg-green">
@@ -30,6 +30,9 @@
         <div class="layui-row">
             <a href="{{ file }}/">
                 <div class="layui-col-md4">
+                    {% if file | is_video_file  %}
+                    <i class="layui-icon layui-icon-video"></i>
+                    {% endif %}
                     {{ file }}
                 </div>
             </a>
