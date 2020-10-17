@@ -1,10 +1,13 @@
-from flask import Flask,render_template,send_file
+from flask import Flask,render_template,send_file,current_app
 from . import main,utils
 
-base_path='D:/ACGN/'
+
 
 @main.route('/<path:path>')
 def index(path):
+    config=current_app.config
+    base_path=config.get('BASE_PATH')
+
     res=None
     context=dict()
     # 本地文件路径
@@ -25,6 +28,9 @@ def index(path):
 
 @main.route('/')
 def index2():
+    config=current_app.config
+    base_path=config.get('BASE_PATH')
+
     path='/'
     context=dict()
     local_path=base_path+path
