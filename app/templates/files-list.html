@@ -1,0 +1,18 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+    <title>Directory listing for {{ current_path }}</title>
+</head>
+
+<body>
+    Directory listing for {{ current_path }}
+    <hr/><ul/>
+
+    {% for file in files %}
+    <li><a href="{{ file }}/" style="font-size:20px">{{ file }}</a>
+    {% endfor %}
+</body>
+
+</html>
