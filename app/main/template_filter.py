@@ -1,4 +1,3 @@
-
 from flask import Flask,render_template,send_file,current_app
 from . import main,utils
 
@@ -9,4 +8,3 @@ def is_media_file(filename):
         if filename.endswith(suffix):
             return True
     return False
-

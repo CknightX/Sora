@@ -2,6 +2,16 @@ import os
 from flask import make_response
 import mimetypes
 
+
+class File:
+    def __init__(self,filename,filepath):
+        self.filename=filename
+        self.filepath=filepath
+        # 路径后约定携带 /
+        if not self.filepath.endswith('/'):
+            self.filepath+='/'
+        self.filetype=get_file_type(self.filepath+self.filename)
+
 def get_dir_files(path):
     try:
         files=os.listdir(path)
@@ -9,13 +19,18 @@ def get_dir_files(path):
         #TODO
         return []
         pass
-    return files
+    res=[]
+    for file in files:
+        res.append(File(file,path))
+
+    return res
 
 
 def get_file_type(path):
     if os.path.isdir(path):
         return 'dir'
-    return 'file'
+    if path.endswith('mp4'):
+        return 'video'
 
 def resolve_file(path):
     f=open(path,'rb')
@@ -37,5 +52,5 @@ def resolve_file(path):
 
 
 if __name__=='__main__':
-    print(get_dir_files('c:/1Myfiles'))
+    print(get_dir_files('c:/1Myfiles')[0].filename)
 

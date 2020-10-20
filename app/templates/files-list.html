@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <script src="/static/layui/layui.all.js"></script>
     <title>Directory listing for {{ current_path }}</title>
 </head>
 
 <body>
-    <script src="/static/layui/layui.all.js"></script>
     <div class="layui-fluid">
         <div class="layui-row layui-bg-blue">
             <div class="layui-col-md4">
@@ -28,12 +28,14 @@
 
         {% for file in files %}
         <div class="layui-row">
-            <a href="{{ file }}/">
+            <a href="{{ file.filename }}/">
                 <div class="layui-col-md4">
-                    {% if file | is_video_file  %}
+                    {% if file.filetype=="video"  %}
                     <i class="layui-icon layui-icon-video"></i>
+                    {% elif file.filetype=="dir" %}
+                    <i class="layui-icon layui-icon-export"></i>
                     {% endif %}
-                    {{ file }}
+                    {{ file.filename }}
                 </div>
             </a>
         </div>

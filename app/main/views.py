@@ -10,18 +10,22 @@ def index(path):
     res=None
     context=dict()
     # 本地文件路径
+    if path.endswith('/'):
+        path=path[:-1]
     local_path=base_path+path
-    if local_path.endswith('/'):
-        local_path=local_path[:-1]
 
     file_type=utils.get_file_type(local_path)
 
     if file_type=='dir':
         context['current_path']=path
         context['files']=utils.get_dir_files(local_path)
+        context['local_path']=local_path
         res=render_template('files-list.html',**context)
-    elif file_type=='file':
-        res=send_file(local_path,conditional=True)
+    else:
+        if file_type=='video':
+            res=send_file(local_path,conditional=True)
+        else:
+            res=send_file(local_path,conditional=True,as_attachment=True,attachment_filename=path)
 
     return res
 
