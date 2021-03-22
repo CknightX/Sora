@@ -20,6 +20,7 @@ def get_dir_files(path):
         return []
         pass
     res=[]
+    files.sort()
     for file in files:
         res.append(File(file,path))
 
