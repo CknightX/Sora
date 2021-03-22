@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="/static/layui/css/layui.css">
     <script src="/static/layui/layui.all.js"></script>
     <title>Directory listing for {{ current_path }}</title>
+    <script>
+    function getPotUrl(id)
+    {
+		var baseUrl=window.document.location.href;
+		
+		window.open("potplayer://"+baseUrl+document.getElementById(id).getAttribute("href"));
+    }
+    </script>
 </head>
 
 <body>
@@ -28,7 +36,7 @@
 
         {% for file in files %}
         <div class="layui-row">
-            <a href="{{ file.filename }}/">
+            <a id="{{ file.filename }}" href="{{ file.filename }}/">
                 <div class="layui-col-md4">
                     {% if file.filetype=="video"  %}
                     <i class="layui-icon layui-icon-video"></i>
@@ -38,6 +46,11 @@
                     {{ file.filename }}
                 </div>
             </a>
+            {% if file.filetype=="video"  %}
+            <button type="button" class="layui-btn layui-btn-normal" onclick="getPotUrl('{{ file.filename }}')">
+				ByPotPlayer
+            </button>
+            {% endif %}
         </div>
         <hr>
         {% endfor %}
